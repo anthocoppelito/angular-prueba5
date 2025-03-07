@@ -1,0 +1,21 @@
+<!-- <p>padre works!</p> -->
+<!-- para comentar algo seleccionalo y haz control + cerrar llave (}) <<<ctrl + }>>> -->
+<!-- bindear = enlazar datos -->
+
+<!-- Lo siguiente seria solo para enviar a hijo -->
+ <!-- <app-hijo [recibeHijo]="mensajePadre""></app-hijo> -->
+
+<!-- Lo siguiente recibe como envia, y incrementa/decrementa desde hijo-padre -->
+<app-hijo 
+(incrementarDesdeHijo)="incrementar()"
+(decrementarDesdeHijo)="decrementar()"
+[recibeHijo]="mensajePadre"
+ (mensajeDesdeHijo)="recibirMensaje($event)"/>
+
+<p>{{contador}}</p>
+
+<!-- Mensaje hijo a padre -->
+ <!-- Lo siguiente seria solo para recibir de hijo -->
+  <!-- <app-hijo (mensajeDesdeHijo)="recibirMensaje($event)"></app-hijo> -->
+
+<h5>El mensaje recibido de hijo es: {{mensajeRecibido}}</h5>
