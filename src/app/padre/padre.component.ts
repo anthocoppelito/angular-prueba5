@@ -1,32 +1,55 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { HijoComponent } from "../hijo/hijo.component";
+import { ServicioFamiliarService } from '../servicio-familiar.service';
+import { EstiloHermanosDirective } from '../estilo-hermanos.directive';
+import { MiPipePersonalizadoPipe } from '../mi-pipe-personalizado.pipe';
+import { CurrencyPipe, DatePipe, DecimalPipe, PercentPipe } from '@angular/common';
 
 @Component({
   selector: 'app-padre',
   standalone: true,
-  imports: [HijoComponent],
+  imports: [
+    HijoComponent,
+    EstiloHermanosDirective, 
+    MiPipePersonalizadoPipe, 
+    DatePipe,
+    CurrencyPipe,
+    DecimalPipe,
+    PercentPipe
+  ],
   templateUrl: './padre.component.html',
   styleUrl: './padre.component.css'
 })
-export class PadreComponent {
+export class PadreComponent implements OnInit {
 
-  //aqui se manda mensaje a hijo
-  mensajePadre = 'Yo soy tu padre';
+  nombre? : string;
+  fecha : Date = new Date();
+  euro : number = 20;
+  numero: number = 2;
+  decimal: number = 0.2567;
 
-  // aqui se recibe el mensaje del hijo
-  mensajeRecibido: string ='';
+  // constructor(
+  //   private _servicioFamiliar : ServicioFamiliarService
+  // ) {}
+  // A partir de angular 15, se empezo a utilizar el injector:
 
-  recibirMensaje($event: string){
-    this.mensajeRecibido = $event;
+  private _servicioFamiliar2 = inject (ServicioFamiliarService);
+  
+
+  ngOnInit(): void {
+      this._servicioFamiliar2.setHermanoGrande('Juan');
+      this.nombre = this._servicioFamiliar2.getHermanoGrande();
   }
 
-  //contador padre
-  contador = 0;
-  incrementar(){
-    this.contador++;
+  saludar(){
+    this._servicioFamiliar2.saludar(this._servicioFamiliar2.getHermanoPequeño() || '');
+
   }
-  decrementar(){
-    this.contador--;
+  preguntar(){
+    console.log(this._servicioFamiliar2.preguntarPorHijo()); 
   }
+
+
+  
 
 }

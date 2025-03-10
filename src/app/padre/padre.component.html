@@ -1,21 +1,35 @@
-<!-- <p>padre works!</p> -->
-<!-- para comentar algo seleccionalo y haz control + cerrar llave (}) <<<ctrl + }>>> -->
-<!-- bindear = enlazar datos -->
 
-<!-- Lo siguiente seria solo para enviar a hijo -->
- <!-- <app-hijo [recibeHijo]="mensajePadre""></app-hijo> -->
 
-<!-- Lo siguiente recibe como envia, y incrementa/decrementa desde hijo-padre -->
-<app-hijo 
-(incrementarDesdeHijo)="incrementar()"
-(decrementarDesdeHijo)="decrementar()"
-[recibeHijo]="mensajePadre"
- (mensajeDesdeHijo)="recibirMensaje($event)"/>
+<h1>Prueba 5 angular va de la 8-12 (de servicios hasta antes de llegar a boostrap) </h1>
 
-<p>{{contador}}</p>
+<p>Inicio:<a href="https://www.youtube.com/watch?v=soInCF7nbDw&t=8009s">Servicio</a></p>
+<p>Fin:<a href="https://www.youtube.com/watch?v=soInCF7nbDw&t=8009s">Boostrap</a></p>
+<p>
+  Se ven:
+</p>
+  <ul>
+    <li>servicios y dependencias</li>
+    <li>directivas</li>
+    <li>pipes (filtros)</li>
+    <li>introduccion a erutamiento</li>
+  </ul>
 
-<!-- Mensaje hijo a padre -->
- <!-- Lo siguiente seria solo para recibir de hijo -->
-  <!-- <app-hijo (mensajeDesdeHijo)="recibirMensaje($event)"></app-hijo> -->
 
-<h5>El mensaje recibido de hijo es: {{mensajeRecibido}}</h5>
+<h1>Pipes(filtros)</h1>
+<h1>Fechas</h1>
+<h2>{{fecha}}</h2> <p>Fecha sin pipe</p>
+<h2>{{fecha | date: 'short'}}</h2> <p>Fecha con date short</p>
+<h2>{{fecha | date: 'dd/MM/YYYY'}}</h2> <p>Fecha con date personalizada: dd/MM/YYYY</p>
+
+<h1>Monedas</h1>
+<h2>{{euro | currency: 'EUR'}}</h2>
+
+<h1>Decimales</h1>
+<h2>{{numero | number: '1.2-2'}}</h2>
+
+<h1>Porcentajes</h1>
+<h2>{{decimal | percent}}</h2>
+
+<h1 appEstiloHermanos>{{nombre | miPipePersonalizado}}</h1>
+<button type="button" (click)="saludar()">Saludar</button>
+<button type="button" (click)="preguntar()">Preguntar por hijo</button>
